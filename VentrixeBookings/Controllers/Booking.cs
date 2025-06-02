@@ -5,12 +5,12 @@ using VentrixeBookings.Services;
 
 namespace VentrixeBookings.Controllers;
 
-[Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class BookingControllers(BookingServices service) : ControllerBase
+public class Booking(BookingServices service) : ControllerBase
 {
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> CreateBookingAsync([FromBody] UserBookingsEntity entity)
     {
         await service.CreateBookingAsync(entity);
@@ -18,6 +18,7 @@ public class BookingControllers(BookingServices service) : ControllerBase
     }
     
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetAllAsync()
     {
         var bookings = await service.GetAllAsync();
