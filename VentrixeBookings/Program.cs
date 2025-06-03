@@ -38,8 +38,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact",
         policy => policy
-            .AllowAnyOrigin()
-            .WithHeaders("Authorization", "Content-Type", "Accept")
+            .WithOrigins("https://lively-pebble-05bdf8603.6.azurestaticapps.net")
+            .AllowAnyHeader()
             .AllowAnyMethod());
 });
 
@@ -62,7 +62,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowReact");
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
