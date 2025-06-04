@@ -37,10 +37,11 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact",
-        policy => policy
-            .AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod());
+            policy => policy
+                .WithOrigins("http://localhost:5173", "https://lively-pebble-05bdf8603.6.azurestaticapps.net")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
 });
 
 builder.Services.AddDbContext<DataContext>(options =>
