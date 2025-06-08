@@ -19,8 +19,12 @@ public class Booking(BookingServices service) : ControllerBase
     
     [HttpGet]
     [Authorize]
-    public async Task<IActionResult> GetAllAsync([FromBody] string email)
+    public async Task<IActionResult> GetAllAsync([FromQuery] string email)
     {
+        if (string.IsNullOrEmpty(email))
+        {
+            return BadRequest("Email parameter is required.");
+        }
         var bookings = await service.GetAllAsync(email);
         return Ok(bookings);
     }
