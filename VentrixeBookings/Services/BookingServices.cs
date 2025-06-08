@@ -21,11 +21,11 @@ public class BookingServices(BookingRepository repository)
         }
     }
     
-    public async Task<List<UserBookingsEntity>> GetAllAsync()
+    public async Task<List<UserBookingsEntity>> GetAllAsync(string email)
     {
         try
         {
-            return await repository.GetAllAsync();
+            return await repository.GetAllAsync(booking => booking.UserEmail == email);
         }
         catch (Exception e)
         {

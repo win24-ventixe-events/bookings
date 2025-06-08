@@ -18,9 +18,9 @@ public class BookingRepository(DataContext context)
         return await _dbSet.FirstOrDefaultAsync(expression);
     }
     
-    public virtual async Task<List<UserBookingsEntity>> GetAllAsync()
+    public virtual async Task<List<UserBookingsEntity>> GetAllAsync(Expression<Func<UserBookingsEntity, bool>> predicate)
     {
-        return await _dbSet.ToListAsync();
+        return await _dbSet.Where(predicate).ToListAsync();
     }
     
     public virtual async Task DeleteAsync(UserBookingsEntity entity)

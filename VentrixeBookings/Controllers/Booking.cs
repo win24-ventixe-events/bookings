@@ -19,9 +19,9 @@ public class Booking(BookingServices service) : ControllerBase
     
     [HttpGet]
     [Authorize]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAllAsync([FromBody] string email)
     {
-        var bookings = await service.GetAllAsync();
+        var bookings = await service.GetAllAsync(email);
         return Ok(bookings);
     }
 }
